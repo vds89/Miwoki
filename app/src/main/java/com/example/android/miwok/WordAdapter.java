@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -44,16 +45,29 @@ public class WordAdapter extends ArrayAdapter<Word> {
         Word currentWord = getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID defaultTranslation
-        TextView nameTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
+        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         // Get the default translation from the current Word object and
         // set this text on the name TextView
-        nameTextView.setText(currentWord.getDefaultTranslation());
+        defaultTextView.setText(currentWord.getDefaultTranslation());
 
         // Find the TextView in the list_item.xml layout with the ID miwokTranslation
-        TextView numberTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
+        TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
         // Get the miwok translation from the current Word object and
         // set this text on the number TextView
-        numberTextView.setText(currentWord.getMiwokTranslation());
+        miwokTextView.setText(currentWord.getMiwokTranslation());
+        // Find the ImageView in the list_item.xml layout with the ID icon
+        ImageView iconView = (ImageView) listItemView.findViewById(R.id.icon_view);
+
+        if(currentWord.hasImage()) {
+            // Get the icon image from the current Word object and
+            // set this image on the image ImageView
+            iconView.setImageResource(currentWord.getImageResourceId());
+            //Make sure the view is visible
+            iconView.setVisibility(View.VISIBLE);
+        }
+        else {
+            iconView.setVisibility(View.GONE);
+        }
 
         return listItemView;
     }
