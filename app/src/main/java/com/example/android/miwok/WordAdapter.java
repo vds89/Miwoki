@@ -24,6 +24,14 @@ import java.util.ArrayList;
  */
 public class WordAdapter extends ArrayAdapter<Word> {
 
+    // The gesture threshold expressed in dp
+    private static final float GESTURE_THRESHOLD_DP = 44.0f;
+    // Get the screen's density scale
+    final float scale = getContext().getResources().getDisplayMetrics().density;
+    // Convert the dps to pixels, based on density scale
+    int mGestureThreshold = (int) (GESTURE_THRESHOLD_DP * scale + 0.5f);
+
+
     public WordAdapter(Activity context, ArrayList<Word> wordAdapter) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
@@ -64,8 +72,25 @@ public class WordAdapter extends ArrayAdapter<Word> {
             iconView.setImageResource(currentWord.getImageResourceId());
             //Make sure the view is visible
             iconView.setVisibility(View.VISIBLE);
+
+
         }
         else {
+            // set to phrase miwok TextView a padding Left of 16dp
+            miwokTextView.setPadding(16,0,0,0);
+            // set to phrase miwok TextView an height of 44dp
+            miwokTextView.setHeight(mGestureThreshold);
+            // set to phrase default TextView a padding Left of 16dp
+            defaultTextView.setPadding(16,0,0,0);
+            // set to phrase default TextView an height of 44dp
+            defaultTextView.setHeight(mGestureThreshold);
+            // set phrase specific background color
+            miwokTextView.setBackgroundColor(getContext().getResources().getColor(R.color.category_phrases));
+            defaultTextView.setBackgroundColor(getContext().getResources().getColor(R.color.category_phrases));
+            //set color text as white
+            miwokTextView.setTextColor(getContext().getResources().getColor(R.color.white_text));
+            defaultTextView.setTextColor(getContext().getResources().getColor(R.color.white_text));
+
             iconView.setVisibility(View.GONE);
         }
 
