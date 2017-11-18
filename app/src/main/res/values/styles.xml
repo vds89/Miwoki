@@ -42,10 +42,11 @@
     <!-- Style for a Miwok translation -->
     <style name="MiwokItemStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/list_text_view_item_height</item>
+        <item name="android:layout_height">0dp</item>
         <item name="android:paddingLeft">16dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:gravity">bottom</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
     </style>
@@ -54,9 +55,11 @@
     <!-- Style for default translation -->
     <style name="DefaultItemStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/list_text_view_item_height</item>
+        <item name="android:layout_height">0dp</item>
         <item name="android:paddingLeft">16dp</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">top</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
     </style>
 </resources>
