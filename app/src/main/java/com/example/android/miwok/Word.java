@@ -19,6 +19,7 @@ public class Word{
         /** Image resource ID for the word */
         private int mImageResourceId = NO_IMAGE_PROVIDED;
 
+        /** Audio resource ID for the word */
         private int mAudioResourceId;
 
         /**
@@ -78,6 +79,18 @@ public class Word{
                 return mImageResourceId != NO_IMAGE_PROVIDED;
             }
 
-
+        /**
+         * Gets the audio resource ID
+         */
         public int getAudioResourceId() { return mAudioResourceId; }
+
+        @Override
+        public String toString() {
+            return "Word{" +
+                    "mDefaultTranslation='" + mDefaultTranslation + '\'' +
+                    ", mMiwokTranslation='" + mMiwokTranslation + '\'' +
+                    ", mImageResourceId=" + mImageResourceId +
+                    ", mAudioResourceId=" + mAudioResourceId +
+                    '}';
+        }
 }
