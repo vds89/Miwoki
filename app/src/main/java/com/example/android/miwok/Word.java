@@ -19,6 +19,8 @@ public class Word{
         /** Image resource ID for the word */
         private int mImageResourceId = NO_IMAGE_PROVIDED;
 
+        private int mAudioResourceId;
+
         /**
         * Create a new Word object.
         *
@@ -26,9 +28,10 @@ public class Word{
         *                           (such as English)
         * @param miwokTranslation is the word in the Miwok language
         */
-        public Word(String defaultTranslation, String miwokTranslation) {
+        public Word(String defaultTranslation, String miwokTranslation, int audioResourceId) {
             mDefaultTranslation = defaultTranslation;
             mMiwokTranslation = miwokTranslation;
+            mAudioResourceId = audioResourceId;
         }
 
         /**
@@ -40,10 +43,11 @@ public class Word{
          * @param image is the drawable resource ID for the image associated with the word
          *
          */
-        public Word(String defaultTranslation, String miwokTranslation, int image) {
+        public Word(String defaultTranslation, String miwokTranslation, int image, int audioResourceId) {
             mDefaultTranslation = defaultTranslation;
             mMiwokTranslation = miwokTranslation;
             mImageResourceId = image;
+            mAudioResourceId = audioResourceId;
         }
 
         /**
@@ -73,4 +77,7 @@ public class Word{
         public boolean hasImage() {
                 return mImageResourceId != NO_IMAGE_PROVIDED;
             }
+
+
+        public int getAudioResourceId() { return mAudioResourceId; }
 }

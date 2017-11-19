@@ -84,7 +84,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         }
         else {
-           
+
             iconView.setVisibility(View.GONE);
         }
 
