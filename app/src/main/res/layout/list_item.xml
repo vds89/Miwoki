@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:minHeight="@dimen/list_item_height">
+        android:minHeight="@dimen/list_item_height"
+        android:id="@+id/text_container">
 
         <TextView
             android:id="@+id/miwok_text_view"

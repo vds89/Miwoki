@@ -2,6 +2,7 @@ package com.example.android.miwok;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,13 +32,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
     // Convert the dps to pixels, based on density scale
     int mGestureThreshold = (int) (GESTURE_THRESHOLD_DP * scale + 0.5f);
 
+    private int mColorResourceId;
 
-    public WordAdapter(Activity context, ArrayList<Word> wordAdapter) {
+
+    public WordAdapter(Activity context, ArrayList<Word> wordAdapter, int ColorResourceId) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, wordAdapter);
+        mColorResourceId = ColorResourceId;
     }
 
     @Override
@@ -49,7 +53,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
                     R.layout.list_item, parent, false);
         }
 
-        // Get the {@link AndroidFlavor} object located at this position in the list
+        // Get the {@link Word} object located at this position in the list
         Word currentWord = getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID defaultTranslation
@@ -58,13 +62,17 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // set this text on the name TextView
         defaultTextView.setText(currentWord.getDefaultTranslation());
 
+
         // Find the TextView in the list_item.xml layout with the ID miwokTranslation
         TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
         // Get the miwok translation from the current Word object and
         // set this text on the number TextView
         miwokTextView.setText(currentWord.getMiwokTranslation());
+
         // Find the ImageView in the list_item.xml layout with the ID icon
         ImageView iconView = (ImageView) listItemView.findViewById(R.id.icon_view);
+
+
 
         if(currentWord.hasImage()) {
             // Get the icon image from the current Word object and
@@ -76,23 +84,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         }
         else {
-            // set to phrase miwok TextView a padding Left of 16dp
-            miwokTextView.setPadding(16,0,0,0);
-            // set to phrase miwok TextView an height of 44dp
-            miwokTextView.setHeight(mGestureThreshold);
-            // set to phrase default TextView a padding Left of 16dp
-            defaultTextView.setPadding(16,0,0,0);
-            // set to phrase default TextView an height of 44dp
-            defaultTextView.setHeight(mGestureThreshold);
-            // set phrase specific background color
-            miwokTextView.setBackgroundColor(getContext().getResources().getColor(R.color.category_phrases));
-            defaultTextView.setBackgroundColor(getContext().getResources().getColor(R.color.category_phrases));
-            //set color text as white
-            miwokTextView.setTextColor(getContext().getResources().getColor(R.color.white_text));
-            defaultTextView.setTextColor(getContext().getResources().getColor(R.color.white_text));
-
+           
             iconView.setVisibility(View.GONE);
         }
+
+            // Set the theme color for the list item
+            View textContainer = listItemView.findViewById(R.id.text_container);
+            // Find the color that the resource ID maps to
+            int color = ContextCompat.getColor(getContext(), mColorResourceId);
+            // Set the background color of the text container View
+            textContainer.setBackgroundColor(color);
 
         return listItemView;
     }
