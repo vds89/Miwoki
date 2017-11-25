@@ -7,7 +7,11 @@ package com.example.android.miwok;
 /**
  * Provides the appropriate {@link Fragment} for a view pager.
  */
+
+
 public class ViewPagerAdapter extends FragmentPagerAdapter {
+
+    private String tabTitles[] = new String[] { "Numbers", "Colors", "Family", "Phrases" };
 
     public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -32,5 +36,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return 4;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        // Generate title based on item position
+        return tabTitles[position];
     }
 }
